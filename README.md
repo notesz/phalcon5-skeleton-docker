@@ -49,3 +49,11 @@ In the main directory stop tha container with docker-compose
 ```shell
 docker-compose down
 ```
+
+### Important notes
+
+This container contains [phalcon-skeleton](https://github.com/notesz/phalcon5-skeleton) project in `/www` folder.
+
+If you want to run your own project delete it. And if you don't use composer, phalcon migration or webpack don't forget to remove these commands from `./src/entrypoint.sh` before run dokcer-compose.
+
+If you want to use [phalcon-skeleton](https://github.com/notesz/phalcon5-skeleton) you can find more info about it [here](https://github.com/notesz/phalcon5-skeleton).
