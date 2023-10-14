@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="<?=$this->di->get('helper')->getAssetRevision('app.css', 'phalcon-skeleton')?>">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <title>Skeleton</title>
+</head>
+
+<body class="d-flex flex-column h-100">
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="<?=$this->url->get(['for' => 'frontend-index'])?>">Skeleton</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="<?=$this->url->get(['for' => 'frontend-index'])?>">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Test</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                            <li><a class="dropdown-item" href="<?=$this->url->get(['for' => 'test-cache-cache'])?>">Cache</a></li>
+                            <li><a class="dropdown-item" href="<?=$this->url->get(['for' => 'test-log-log'])?>">Log</a></li>
+                            <li><a class="dropdown-item" href="<?=$this->url->get(['for' => 'test-image-list'])?>">Image</a></li>
+                            <li><a class="dropdown-item" href="<?=$this->url->get(['for' => 'test-debugbar-debugbar'])?>">Debug bar</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="flex-shrink-0">
+    <div class="container">
+
+        <!-- flash -->
+        <?=$this->flash->output()?>
+        <!-- flash end -->
+
+        <!-- content -->
+        <div class="col-md-12">
+            <?=$this->getContent() ?>
+        </div>
+        <!-- content end -->
+
+    </div>
+</main>
+
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <span class="text-muted">phalcon5-skeleton</span>
+    </div>
+</footer>
+
+<script src="<?=$this->di->get('helper')->getAssetRevision('app.js', 'phalcon-skeleton')?>"></script>
+
+</body>
+</html>

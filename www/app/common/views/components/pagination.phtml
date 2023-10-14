@@ -1,0 +1,67 @@
+<!-- pagination start -->
+<?php if (
+    !empty($pager['total_pages']) &&
+    $pager['total_pages'] > 1
+) : ?>
+
+    <?php $const = 5; ?>
+
+    <?php
+
+    $getParams = $_GET;
+    unset($getParams['_url']);
+    unset($getParams['page']);
+
+    $searchString = '';
+    foreach ($getParams as $paramKey => $paramValue) {
+        $searchString .= '&' . $paramKey . '=' . $paramValue;
+    }
+
+    ?>
+
+    <nav aria-label="Lapozás" class="mb-6">
+        <ul class="pagination pagination-sm justify-content-center align-items-center flex-wrap">
+            <?php if ($pager['current'] != $pager['first']) : ?>
+                <li class="page-item"><a class="page-link text-uppercase font-size-xs" href="?<?=$this->di->get('config')->pagination->key?>=<?=$pager['first']?><?=$searchString?>">First</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="?<?=$this->di->get('config')->pagination->key?>=<?=$pager['previous']?><?=$searchString?>" title="Previous">
+                        <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.25 12.5059C6.00391 12.5059 5.78516 12.4238 5.62109 12.2598L0.371094 7.00977C0.015625 6.68164 0.015625 6.10742 0.371094 5.7793L5.62109 0.529297C5.94922 0.173828 6.52344 0.173828 6.85156 0.529297C7.20703 0.857422 7.20703 1.43164 6.85156 1.75977L2.23047 6.38086L6.85156 11.0293C7.20703 11.3574 7.20703 11.9316 6.85156 12.2598C6.6875 12.4238 6.46875 12.5059 6.25 12.5059Z" fill="#4f4f4f"/>
+                        </svg>
+                    </a>
+                </li>
+            <?php endif; ?>
+
+            <?php $prevP = 0; ?>
+            <?php for ($p = 1; $p < ($pager['total_pages'] + 1); $p++) : ?>
+
+                <?php if (
+                    ($p < $const) ||
+                    (($p > $pager['current']-$const) && ($p < $pager['current']+$const)) ||
+                    ($pager['total_pages']-$const < $p)
+                ) : ?>
+
+                    <?php if ($prevP != $p-1) : ?>
+                        <li class="page-item disable hidden-xs"><a class="page-link">...</a></li>
+                    <?php endif; ?>
+
+                    <li<?=($pager['current'] == $p) ? ' class="active page-item"' : ' class="hidden-xs page-item" '?>><a class="page-link" href="?<?=$this->di->get('config')->pagination->key?>=<?=$p?><?=$searchString?>"><?=$p?></a></li>
+                    <?php $prevP = $p; ?>
+
+                <?php endif; ?>
+
+            <?php endfor; ?>
+
+            <?php if ($pager['current'] != $pager['total_pages']) : ?>
+                <li class="page-item">
+                    <a class="page-link" href="?<?=$this->di->get('config')->pagination->key?>=<?=$pager['next']?><?=$searchString?>" title="Next">
+                        <svg width="8" height="13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.75 12.506a.867.867 0 0 1-.629-.246.843.843 0 0 1 0-1.23l4.621-4.65-4.62-4.62a.843.843 0 0 1 0-1.23.843.843 0 0 1 1.23 0l5.25 5.25a.843.843 0 0 1 0 1.23l-5.25 5.25a.849.849 0 0 1-.602.246Z" fill="#4F4F4F"/></svg>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link text-uppercase font-size-xs" href="?<?=$this->di->get('config')->pagination->key?>=<?=$pager['total_pages']?><?=$searchString?>">Last</a></li>
+            <?php endif; ?>
+        </ul>
+    </nav>
+
+<?php endif; ?>
+<!-- pagination end -->

@@ -1,0 +1,8 @@
+./.env
+./.idea
+./data/mysql/*
+!./data/mysql/.gitkeep
+./data/nginx/*
+!./data/nginx/.gitkeep
+./data/redis/*
+!./data/redis/.gitkeep

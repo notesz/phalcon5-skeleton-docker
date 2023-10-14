@@ -1,0 +1,94 @@
+version: "3"
+
+services:
+
+  database:
+    image: mariadb:10.11.2
+    container_name: ${APP_NAME}_mariadb
+    ports:
+      - ${DB_PORT}:3306
+    volumes:
+      - "./data/mysql:/var/lib/mysql"
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    networks:
+      - php8phalcon5
+
+  redis:
+    container_name: ${APP_NAME}_redis
+    image: redis:7.2.1
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - "./data/redis:/data"
+    ports:
+      - ${REDIS_PORT}:6379
+    restart: always
+    networks:
+      - php8phalcon5
+
+  php:
+    container_name: ${APP_NAME}_php
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+    working_dir: /var/www/html
+    volumes:
+      - "./config/php/timezone.ini:/usr/local/etc/php/conf.d/timezone.ini"
+      - "./config/php/file.ini:/usr/local/etc/php/conf.d/file.ini"
+      - "./www:/var/www/html"
+    depends_on:
+      - database
+      - redis
+    links:
+      - database
+      - redis
+    command: bash -c "php-fpm"
+    restart: always
+    networks:
+      - php8phalcon5
+
+  nginx:
+    container_name: ${APP_NAME}_nginx
+    image: nginx:1.23.3
+    command: ["nginx", "-g", "daemon off;"]
+    working_dir: /var/www/html
+    depends_on:
+      - php
+      - database
+    volumes:
+      - "./config/nginx/conf.d:/etc/nginx/conf.d/"
+      - "./data/nginx:/var/log/nginx"
+      - "./www:/var/www/html"
+    ports:
+      - ${APP_PORT}:80
+    links:
+      - php
+    restart: always
+    networks:
+      - php8phalcon5
+
+  phpmyadmin:
+    container_name: ${APP_NAME}_phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    links:
+      - database
+    depends_on:
+      - database
+    ports:
+      - ${PMA_PORT}:80
+    environment:
+      PMA_HOST: ${APP_NAME}_mariadb
+      PMA_USER: ${MYSQL_USER}
+      PMA_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      - php8phalcon5
+
+networks:
+  php8phalcon5:
+    driver: bridge

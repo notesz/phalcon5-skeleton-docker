@@ -1,0 +1,17 @@
+<h1>Image test</h1>
+
+<h2>Edit</h2>
+
+<div class="row g-3">
+
+    <p>
+        <img src="<?=$result['filepath']['lgc']['filepath']?>" alt="<?=$result['title']?>" />
+    </p>
+
+    <pre style="padding: 20px; background: #f0f0f0;"><?php print_r($result)?></pre>
+
+    <div class="col-auto">
+        <a href="<?=$this->url->get(['for' => 'test-image-list'])?>" class="btn btn-secondary mb-3">Cancel</a>
+    </div>
+
+</div>

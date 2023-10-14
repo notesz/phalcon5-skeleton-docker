@@ -1,0 +1,42 @@
+<h1>Image test</h1>
+
+<h2>Upload</h2>
+
+<form class="row g-3" action="<?=$this->url->get(['for' => 'test-image-upload'])?>" method="post" enctype="multipart/form-data">
+
+    <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="Title of the image" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="type" class="form-label">Type</label>
+        <select class="form-select" id="type" name="type" aria-label="Default select" required>
+            <option>Select a type...</option>
+<?php foreach ($this->di->get('config')->image->types as $typeKey => $typeValue) : ?>
+            <option value="<?=$typeKey?>"><?=$typeValue['name']?></option>
+<?php endforeach; ?>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="parent_id" class="form-label">Parent id</label>
+        <select class="form-select" id="parent_id" name="parent_id" aria-label="Default select" required>
+            <option>Select an id...</option>
+<?php for ($i = 1; $i < 11; $i++) : ?>
+            <option value="<?=$i?>"><?=$i?></option>
+<?php endfor; ?>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="file" class="form-label">File</label>
+        <input type="file" class="form-control" id="file" name="file" placeholder="Image" required>
+    </div>
+
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Upload</button>
+        <a href="<?=$this->url->get(['for' => 'test-image-list'])?>" class="btn btn-secondary mb-3">Cancel</a>
+    </div>
+
+</form>
