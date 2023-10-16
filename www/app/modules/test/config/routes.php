@@ -26,3 +26,6 @@ $router->add('/test/debugbar', [
 
 // image
 include __DIR__ . '/routes_image.php';
+
+// filestorage
+include __DIR__ . '/routes_filestorage.php';

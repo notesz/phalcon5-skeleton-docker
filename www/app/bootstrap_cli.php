@@ -11,7 +11,7 @@ use Phalcon\Cli\Console;
 use Phalcon\Cli\Console\Exception as PhalconException;
 use Phalcon\Di\FactoryDefault\Cli as CliDI;
 
-error_reporting(E_ALL);
+error_reporting(0);
 
 date_default_timezone_set('Europe/Budapest');
 

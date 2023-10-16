@@ -9,7 +9,6 @@ $di->setShared('redis', function() {
     $serializerFactory = new Phalcon\Storage\SerializerFactory();
 
     $adapter = new Phalcon\Cache\Adapter\Redis($serializerFactory, [
-        'defaultSerializer' => 'Json',
         'lifetime'          => $config->redis->lifetime,
         'host'              => $config->redis->host,
         'port'              => $config->redis->port,

@@ -134,4 +134,8 @@ return new \Phalcon\Config\Config([
         'path' => BASE_PATH . '/data/images',
         'url'  => $_ENV['BASE_URL'] . '/i',
     ],
+
+    'filestorage' => [
+        'path' => BASE_PATH . '/data/files',
+    ],
 ]);

@@ -1,0 +1,42 @@
+<h1>FileStorage test</h1>
+
+<h2>Files</h2>
+
+<a href="<?=$this->url->get(['for' => 'test-filestorage-upload'])?>">Upload</a>
+
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Code</th>
+        <th scope="col">Title</th>
+        <th scope="col">Filename</th>
+        <th scope="col">Mimetype</th>
+        <th scope="col">Size</th>
+        <th scope="col">Created date</th>
+        <th scope="col">&nbsp;</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($items as $item) : ?>
+        <tr>
+            <th><?=$item['code']?></th>
+            <td><?=$item['title']?></td>
+            <td><?=$item['filename']?></td>
+            <td><?=$item['mimetype']?></td>
+            <td><?=$item['filesize']?></td>
+            <td><?=$item['created_date']?></td>
+            <td>
+                <a class="btn btn-info btn-sm" href="<?=$this->url->get(['for' => 'test-filestorage-edit', 'code' => $item['code']])?>">Edit</a>
+                <a class="btn btn-info btn-sm" href="<?=$this->url->get(['for' => 'test-filestorage-download', 'code' => $item['code']])?>">Download</a>
+                <a class="btn btn-danger btn-sm" href="<?=$this->url->get(['for' => 'test-filestorage-delete', 'code' => $item['code']])?>">Delete</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+
+<div class="row">
+    <div class="col-md-12">
+        <?php include $this->di->get('config')->application->viewsDir->components . 'pagination.phtml'; ?>
+    </div>
+</div>
