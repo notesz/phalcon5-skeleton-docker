@@ -41,6 +41,7 @@ services:
     volumes:
       - "./config/php/timezone.ini:/usr/local/etc/php/conf.d/timezone.ini"
       - "./config/php/file.ini:/usr/local/etc/php/conf.d/file.ini"
+      - "./config/crontabs/root:/var/spool/cron/crontabs/root"
       - "./www:/var/www/html"
     depends_on:
       - database
