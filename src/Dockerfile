@@ -13,6 +13,12 @@ RUN apk add --no-cache $PHPIZE_DEPS \
     apk del $PHPIZE_DEPS; \
     rm -rf /tmp/pear;
 
+# Install gettext
+RUN apk add --no-cache gettext && \
+    apk add --no-cache --virtual .build-dependencies gettext-dev && \
+    docker-php-ext-install gettext mysqli && \
+    apk del .build-dependencies
+
 # Install other dependencies
 RUN apk add --no-cache git curl sqlite nodejs npm
 
