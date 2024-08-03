@@ -2,13 +2,13 @@ FROM php:8.2.10-fpm
 
 # Update packages
 RUN apt-get update
-RUN apt-get install -y zip unzip git curl nodejs npm gettext exif imagemagick
+RUN apt-get install -y zip unzip git curl nodejs npm gettext exif imagemagick redis
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions
 
 # Install PHP extensions
-RUN install-php-extensions xdebug pdo_mysql zip intl pcntl gd exif gettext imagick
+RUN install-php-extensions xdebug pdo_mysql zip intl pcntl gd exif gettext imagick redis
 
 # Install psr
 RUN cd /tmp \
