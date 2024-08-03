@@ -9,8 +9,6 @@ The goal of this container is to provide an example for running PHP8 and Phalcon
 Originally it has been designed for [phalcon5-skeleton](https://github.com/notesz/phalcon5-skeleton). \
 So the project folder contains the release [1.2](https://github.com/notesz/phalcon5-skeleton/releases/tag/1.2).
 
-The Dockerfile based on [zhuzhu/php:8.2-fpm-phalcon-5.3.1](https://hub.docker.com/layers/zhuzhu/php/8.2-fpm-phalcon-5.3.1/images/sha256-1c2b2a84a891fb6ae32c53723fc2de63219683e069756036f6d0dea0d0383937?context=explore). You can modify it in the Dockerfile if you need.
-
 * Uses PHP 8.2 and Phalcon 5.3
 * Uses main PHP extensions: bcmath, ctype, curl, exif, gd, imagick, json, mbstring, pdo, etc...
 * Uses MariaDB 10 (with phpMyAdmin)

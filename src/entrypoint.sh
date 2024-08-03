@@ -7,8 +7,6 @@ php composer.phar install
 
 php ./vendor/bin/phalcon-migrations run
 
-crond
-
 npm init -y
 npm install webpack webpack-cli --save-dev
 npm run build
