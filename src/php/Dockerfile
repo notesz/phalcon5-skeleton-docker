@@ -8,7 +8,7 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 RUN chmod +x /usr/local/bin/install-php-extensions
 
 # Install PHP extensions
-RUN install-php-extensions xdebug pdo_mysql zip intl pcntl gd exif gettext imagick redis
+RUN install-php-extensions xdebug pdo_mysql zip intl pcntl gd exif gettext imagick redis mysqli
 
 # Install psr
 RUN cd /tmp \
