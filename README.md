@@ -7,12 +7,13 @@ Repository: https://github.com/notesz/phalcon5-skeleton-docker
 The goal of this container is to provide an example for running PHP8 and Phalcon5 in a container which follows the best practices and is easy to understand and modify to your needs.
 
 Originally it has been designed for [phalcon5-skeleton](https://github.com/notesz/phalcon5-skeleton). \
-So the project folder contains the release [1.2](https://github.com/notesz/phalcon5-skeleton/releases/tag/1.2).
+Before run docker-compose, copy the project into www folder and modify APP_ROOT in .env.
 
-* Uses PHP 8.2 and Phalcon 5.3
+* Uses PHP 8.4 and Phalcon 5.10
 * Uses main PHP extensions: bcmath, ctype, curl, exif, gd, imagick, json, mbstring, pdo, etc...
-* Uses MariaDB 10 (with phpMyAdmin)
-* Uses Redis 7
+* Uses MariaDB 12 (with phpMyAdmin)
+* Uses Redis 8
+* Uses ElasticSearch 8
 * Install and run composer
 * Run Phalcon migration
 * Install webpack and run a build
@@ -23,7 +24,7 @@ So the project folder contains the release [1.2](https://github.com/notesz/phalc
 
 1. Download the files
 2. Create a .env from .env.example and modify it in the main folder (the example contains my recommended settings)
-3. Modify your project config. If your `APP_NAME` is `php8phalcon5`, the database host is `php8phalcon5_mariadb`, redis host is `php8phalcon5_redis`.
+3. Modify your project config. The database host is `database`, redis host is `redis` and ElasticSearch is `elasticsearch`.
 
 ### Run container
 
@@ -49,10 +50,5 @@ docker-compose down
 ```
 
 ### Important notes
-
-This container contains [phalcon-skeleton](https://github.com/notesz/phalcon5-skeleton) project in `/www` folder.
-
-If you want to run your own project delete it. \
-And if you don't use composer, phalcon migration or webpack don't forget to remove these commands from `./src/entrypoint.sh` before run docker-compose. Don't forget to modify cron settings in `./config/crontabs` too.
 
 If you want to use [phalcon-skeleton](https://github.com/notesz/phalcon5-skeleton) you can find more info about it [here](https://github.com/notesz/phalcon5-skeleton).
